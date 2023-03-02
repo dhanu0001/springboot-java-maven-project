@@ -1,6 +1,6 @@
 # Springboot-java-based project analyzed on SonarCloud using circleci
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=coverage)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![SonarCloud analysis](https://github.com/budda-dhanunjayareddy_saks/springboot-java-project/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/budda-dhanunjayareddy_saks/springboot-java-project/actions/workflows/main.yml) https://sonarcloud.io/project/overview?id=saks-code-repo
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=dhanu0001_springboot-java-maven-project&metric=coverage)](https://sonarcloud.io/summary/new_code?id=dhanu0001_springboot-java-maven-project) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dhanu0001_springboot-java-maven-project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dhanu0001_springboot-java-maven-project) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=dhanu0001_springboot-java-maven-project&metric=sqale_rating)]   (https://sonarcloud.io/summary/new_code?id=dhanu0001_springboot-java-maven-project) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=dhanu0001_springboot-java-maven-project&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=dhanu0001_springboot-java-maven-project)  https://sonarcloud.io/project/overview?id=saks-code-repo
 
 #### This project is analysed on [SonarCloud] (https://sonarcloud.io/project/overview?id=saks-code-repo)!
 
@@ -10,3 +10,4 @@ You simply have to do 2 things in your `.config.yml` file:
 * Run `mvn sonar:sonar` at some point of time in the `script` section
 
 You can take a look at the [.config.yml file] (https://github.com/budda-dhanunjayareddy_saks/springboot-java-project/blob/codecoverage/.config.yml)
+
