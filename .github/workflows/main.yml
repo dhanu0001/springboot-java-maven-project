@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: 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  # Needed to get PR information, if any
           SONAR_PROJECTKEY: dhanu0001_springboot-java-maven-project
           SONAR_ORGANIZATION: saks-code-repo
-          SONAR_TOKEN: 7ee42a88ae8539b3bf2c4534809d6cb522655bef 
+          SONAR_TOKEN: 7ee42a88ae8539b3bf2c4534809d6cb522655bef
           
 #       - name: Build and analyze
 #         env:
