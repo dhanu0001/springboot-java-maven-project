@@ -1,6 +1,6 @@
 # Springboot-java-based project analyzed on SonarCloud using circleci
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=coverage)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) https://sonarcloud.io/project/overview?id=saks-code-repo
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=coverage)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=saks-code-repo&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=saks-code-repo) https://sonarcloud.io/project/overview?id=saks-code-repo
 
 #### This project is analysed on [SonarCloud] (https://sonarcloud.io/project/overview?id=saks-code-repo)!
 
