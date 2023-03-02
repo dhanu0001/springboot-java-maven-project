@@ -24,7 +24,7 @@ jobs:
         run: mvn test
         
       - name: Analyze with Sonarcloud
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=false
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true
 #         with:
 #           projectBaseDir: /home/runner/work/springboot-java-project/springboot-java-project/target/site/jacoco/jacoco.csv
 #           sonarCloudScan: true
