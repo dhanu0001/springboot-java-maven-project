@@ -1,35 +1,62 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
+name: SonarCloud analysis
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - master
+      - code-coverage
   pull_request:
-    branches: [ "main" ]
-
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
-
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+      - name: Build with maven
+        run: mvn clean package
+          
+      - name: Test with maven
+        run: mvn test
+        
+      - name: Analyze with Sonarcloud
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=false
+#         with:
+#           projectBaseDir: /home/runner/work/springboot-java-project/springboot-java-project/target/site/jacoco/jacoco.csv
+#           sonarCloudScan: true
+        env:
+          GITHUB_TOKEN: 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  # Needed to get PR information, if any
+          SONAR_PROJECTKEY: saks-code-repo
+          SONAR_ORGANIZATION: dhanu0001
+          SONAR_TOKEN: 97e22ce748b6b6855d1f1fcd0e3ca2323abd0219
+          
+#       - name: Build and analyze
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+          
+      # Check the Quality Gate status.
+#       - name: SonarQube Quality Gate check
+#         id: sonarqube-quality-gate-check
+#         uses: sonarsource/sonarqube-quality-gate-action@master
+#         with:
+#            scanMetadataReportFile: target/sonar/report-task.txt
+#            wait-for-quality-gate: 'true'
+#            quality-gate-wait-timeout: 2m
+#         Force to fail step after specific time.
+#         timeout-minutes: 5
+#         env:
+#           GITHUB_TOKEN: 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  # Needed to get PR information, if any
+#           SONAR_PROJECTKEY: saks-code-repo
+#           SONAR_ORGANIZATION: dhanu0001
+#           SONAR_TOKEN: 97e22ce748b6b6855d1f1fcd0e3ca2323abd0219
+        
+        
+  
+        
