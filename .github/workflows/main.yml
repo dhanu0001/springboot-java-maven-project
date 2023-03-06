@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - main
-      - master 
+      - master
+      - dhanu-code-analysis-branch
   pull_request:
+    branches: [ "main", "dhanu-code-analysis-branch"]
     types: [opened, synchronize, reopened] 
 jobs:
   sonarcloud: 
