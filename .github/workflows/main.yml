@@ -5,8 +5,10 @@ on:
       - main
       - release-*
   pull_request:
-    branches: [ "main"]
-    types: [opened, synchronize, reopened] 
+     branches:
+       - main
+       - release-*
+     types: [opened, synchronize, reopened] 
 jobs:
   sonarcloud: 
     name: SonarCloud
