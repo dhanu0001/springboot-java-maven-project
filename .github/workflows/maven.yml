@@ -3,7 +3,7 @@ name: SonarCloud analysis
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dhanu-code-analysis-branch"]
   pull_request:
     branches: [ "main", "dhanu-code-analysis-branch"]
 
