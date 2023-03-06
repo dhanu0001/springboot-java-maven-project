@@ -3,10 +3,8 @@ on:
   push:
     branches:
       - main
-      - master
-      - dhanu-code-analysis-branch 
   pull_request:
-    branches: [ "main", "dhanu-code-analysis-branch"]
+    branches: [ "main"]
     types: [opened, synchronize, reopened] 
 jobs:
   sonarcloud: 
@@ -24,7 +22,7 @@ jobs:
       - name: Test with maven
         run: mvn test
         
-      - name: Analyze with Sonarcloud
+      - name: Analyze with Sonarcloud with quality gate condition as code-coverage above 80%
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true
 #         with:
 #           projectBaseDir: /home/runner/work/springboot-java-project/springboot-java-project/target/site/jacoco/jacoco.csv
@@ -34,6 +32,9 @@ jobs:
           SONAR_PROJECTKEY: dhanu0001_springboot-java-maven-project
           SONAR_ORGANIZATION: saks-code-repo
           SONAR_TOKEN: 7ee42a88ae8539b3bf2c4534809d6cb522655bef 
+          
+#       - name: Analyze with Sonarcloud without condition
+#         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=false
           
 #       - name: Build and analyze
 #         env:
