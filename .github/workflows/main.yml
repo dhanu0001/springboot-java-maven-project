@@ -4,7 +4,7 @@ on:
     branches:
       - main
       - master
-      - dhanu-code-analysis-branch
+      - dhanu-code-analysis-branch 
   pull_request:
     branches: [ "main", "dhanu-code-analysis-branch"]
     types: [opened, synchronize, reopened] 
