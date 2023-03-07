@@ -35,7 +35,7 @@ jobs:
           SONAR_TOKEN: 7ee42a88ae8539b3bf2c4534809d6cb522655bef 
           
 #       - name: Analyze with Sonarcloud without condition
-#         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=false
+#         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
           
 #       - name: Build and analyze
 #         env:
