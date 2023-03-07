@@ -24,7 +24,7 @@ jobs:
         run: mvn test
         
       - name: Analyze with Sonarcloud with quality gate condition as code-coverage above 80%
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 #         with:
 #           projectBaseDir: /home/runner/work/springboot-java-project/springboot-java-project/target/site/jacoco/jacoco.csv
 #           sonarCloudScan: true
@@ -35,7 +35,7 @@ jobs:
           SONAR_TOKEN: 7ee42a88ae8539b3bf2c4534809d6cb522655bef 
           
 #       - name: Analyze with Sonarcloud without condition
-#         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+#         run: mvn -B verify sonar:sonar -Dsonar.projectKey=$SONAR_PROJECTKEY -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true
           
 #       - name: Build and analyze
 #         env:
