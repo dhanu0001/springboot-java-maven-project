@@ -46,7 +46,7 @@ jobs:
             # mvn clean package
             # mvn install -DskipTests
             mvn test
-            mvn clean verify sonar:sonar -Dsonar.login=63d071a7e12248ac58ad6e68d22bbcc01c674033 -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=saks-code-analysis -Dsonar.projectKey=dhanu0001_springboot-java-maven-project -Dsonar.qualitygate.wait=true
+            mvn clean verify sonar:sonar -Dsonar.login=b97f1cde315e3ef320c2a1ce1e66d66ac93c3efd -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=saks-code-analysis -Dsonar.projectKey=dhanu0001_springboot-java-maven-project -Dsonar.qualitygate.wait=true
             # mvn sonar:sonar -Pcoverage
             curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
             cat /home/circleci/project/result.json
