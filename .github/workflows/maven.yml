@@ -23,15 +23,15 @@ jobs:
         run: mvn test
         
       - name: Analyze with Sonarcloud
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=dhanu0001_springboot-java-maven-project -Dsonar.organization=saks-code-analysis -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=2be6c5208e40a0d1a5b570befc7c8884eb6ab1b4 -Dsonar.qualitygate.wait=true
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=dhanu0001_springboot-java-maven-project -Dsonar.organization=dhanu0001 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a9632b495b8b1086a4e2857e4257e1e1d454f045 -Dsonar.qualitygate.wait=true
 #         with:
 #           projectBaseDir: /home/runner/work/springboot-java-project/springboot-java-project/target/site/jacoco/jacoco.csv
 #           sonarCloudScan: true
         env:
           GITHUB_TOKEN: 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  # Needed to get PR information, if any
           SONAR_PROJECTKEY: dhanu0001_springboot-java-maven-project
-          SONAR_ORGANIZATION: saks-code-analysis
-          SONAR_TOKEN: 63d071a7e12248ac58ad6e68d22bbcc01c674033 
+          SONAR_ORGANIZATION: dhanu0001
+          SONAR_TOKEN: a9632b495b8b1086a4e2857e4257e1e1d454f045
           
 #       - name: Build and analyze
 #         env:
