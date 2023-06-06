@@ -31,7 +31,7 @@ jobs:
             cd /home/circleci/project/
             ls -lrt /home/circleci/project/
             mvn clean test
-            mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-project -Dsonar.projectName='sonar-project' -Dsonar.host.url=http://localhost:9002 -Dsonar.token=sqp_2cc6e009ff85c814ddaa94b7b2370579242025cf
+            mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-project -Dsonar.projectName='sonar-project' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_2cc6e009ff85c814ddaa94b7b2370579242025cf
       
 workflows:
   main-workflow:
