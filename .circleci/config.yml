@@ -1,70 +1,39 @@
 version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: cimg/openjdk:11.0.16 
-      # - image: circleci/node:14
-    # environment:
-    #   SONAR_TOKEN: 97e22ce748b6b6855d1f1fcd0e3ca2323abd0219
-    #   SONAR_PROJECT_KEY: saks-code-repo
-    #   SONAR_ORGANIZATION: dhanu0001
+commands:
+  install-engine:
+    description: "Install Sonarqube scanner"
+    parameters:
+      engine_version:
+        type: string
+        default: "4.6.0.2311"
     steps:
-      - checkout
-      # - run:
-      #    command: |
-      #     # cd /home/circleci/project/
-      #     apt-get update
-      #     apt-get install -y jq checkstyle
-      #     wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-      #     tar xzf apache-maven-3.5.4-bin.tar.gz
-      #     ln -s apache-maven-3.5.4 maven
-      #     wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
-      #     unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
-      #     export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
-      # - run:
-      #     name: Install dependencies 
-      #     command: npm ci
-      # - run:
-      #     name: Run tests
-      #     command: npm test
       - run:
-          name: Install SonarScanner
+          name: "Install Sonarqube scanner"
           command: |
-            wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-            tar xzf apache-maven-3.5.4-bin.tar.gz 
-            rm apache-maven-3.5.4-bin.tar.gz
-            ln -s apache-maven-3.5.4 maven
-            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip
-            unzip sonar-scanner-cli-4.5.0.2216-linux.zip
-            rm sonar-scanner-cli-4.5.0.2216-linux.zip
-            export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
-            # cd /home/circleci/project/
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-<< parameters.engine_version >>.zip
+            unzip sonar-scanner-cli-<< parameters.engine_version >>.zip
+
+
+jobs:
+  code-analysis:
+    docker:
+      - image: cimg/openjdk:11.0.16
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+          - "4b:97:c4:48:10:9c:5e:8d:f3:bd:a7:d4:c1:66:cf:b7"
+      - checkout
+      - install-engine
+      - run:
+          name: code-coverage
+          command: |
             cd /home/circleci/project/
-            ls -lrt /home/circleci/project           
-            # mvn clean install
-            # mvn clean package
-            # mvn install -DskipTests
-            mvn test
-            mvn clean verify sonar:sonar -Dsonar.login=63d071a7e12248ac58ad6e68d22bbcc01c674033 -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=saks-code-analysis -Dsonar.projectKey=dhanu0001_springboot-java-maven-project -Dsonar.qualitygate.wait=true
-            # mvn sonar:sonar -Pcoverage
-            curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
-            cat /home/circleci/project/result.json
-            #cat /home/circleci/project/target/sonar/report-task.txt
-            # mvn install -DskipTests
-            # mvn sonar:sonar
-            # ls -lrt /home/circleci/project/sonar
+            ls -lrt /home/circleci/project/
+            mvn clean test
+            mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-project -Dsonar.projectName='sonar-project' -Dsonar.host.url=http://localhost:9002 -Dsonar.token=sqp_2cc6e009ff85c814ddaa94b7b2370579242025cf
       
-      # - run:
-      #     name: Analyze with SonarCloud
-      #     command: |
-      #       ./sonar-scanner-4.5.0.2216-linux/bin/sonar-scanner \
-      #         -Dsonar.projectKey=$Project_Key \
-      #         -Dsonar.organization=$Organization \
-      #         -Dsonar.sources=. \
-      #         -Dsonar.host.url=$Host \
-      #         -Dsonar.login=$Sonar_Token \
-      #         -Dsonar.sources=src/test/java/com/jtspringproject/JtSpringProject \
-      #         -Dsonar.java.binaries=target/classes/com/jtspringproject/JtSpringProject/controller/ \
-      #         -Dsonar.junit.reportsPath=target/surefire-reports/ \
-      #         -Dsonar.jacoco.reportsPath=target/jacoco.exec
+workflows:
+  main-workflow:
+    jobs:
+      - code-analysis
